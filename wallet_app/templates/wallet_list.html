@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Wallets</h2>
+  <ul>
+    {% for wallet in wallets %}
+      <li>
+        {{ wallet.currency }} - {{ wallet.balance }} - {{ wallet.user }}
+        <a href="{% url 'wallet-detail' pk=wallet.pk %}">Details</a>
+      </li>
+    {% endfor %}
+  </ul>
+  
+  <h2>Transactions</h2>
+  <ul>
+    {% for transaction in transactions %}
+      <li>{{ transaction.source_wallet.currency }} to {{ transaction.target_wallet.currency }}: {{ transaction.amount }}</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'create_transaction' %}">Create Transaction</a>
+{% endblock %}

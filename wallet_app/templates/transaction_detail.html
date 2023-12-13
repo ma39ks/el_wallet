@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <h2>Transaction Detail</h2>
+   <p>Amount: {{ transaction.amount }} {{ transaction.source_wallet.currency }} to {{ transaction.target_wallet.currency }}</p>
+   <p>Created At: {{ transaction.created_at }}</p>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <h2>Wallet Detail</h2>
+   <p>User: {{ wallet.user.username }}</p>
+   <p>Balance: {{ wallet.balance }} {{ wallet.currency }}</p>
+{% endblock %}

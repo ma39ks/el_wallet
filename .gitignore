@@ -1,0 +1,41 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+
+# Virtual Environment
+venv/
+env/
+env36/
+env37/
+env38/
+env39/
+__env__/
+myenv/
+
+# macOS
+.DS_Store
+
+# Editor-specific
+.vscode/
+*.swp
+*.swo
+*.sublime-workspace
+
+# PyCharm
+.idea/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Visual Studio Code
+.vscode/
+.settings/
+*.code-workspace
