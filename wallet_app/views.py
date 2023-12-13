@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import LoginForm
 from django.contrib.auth.views import LoginView, LogoutView
 
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, CreateView
 from .models import Wallet, Transaction
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .forms import TransactionForm
@@ -41,8 +41,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                # Пользователь аутентифицирован, выполните необходимые действия, например, перенаправление на другую страницу
-                return redirect('/wallet/')  # Замените 'home' на имя вашего представления или URL
+                return redirect('/wallet/')
     else:
         form = LoginForm()
 
@@ -63,18 +62,16 @@ class TransactionCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'transaction_create.html'
     fields = ['source_wallet', 'target_wallet', 'amount']
 
-    # Указываем разрешение, необходимое для доступа к представлению
     permission_required = 'wallet_app.add_transaction'
 
     def form_valid(self, form):
-        # Здесь вы можете выполнить дополнительные действия, если форма действительна
         return super().form_valid(form)
 
 class WalletListView(LoginRequiredMixin, ListView):
     model = Wallet
-    template_name = 'wallet_list.html'  # Создайте файл шаблона wallet_list.html
+    template_name = 'wallet_list.html'
     context_object_name = 'wallets'
-    login_url = 'login'  # Перенаправление на страницу входа
+    login_url = 'login'
 
 class TransactionListView(LoginRequiredMixin, ListView):
     model = Transaction
@@ -223,5 +220,4 @@ def index(request):
 
 @login_required
 def profile(request):
-    # Логика вашего представления
     return render(request, 'wallet_app/profile.html')
